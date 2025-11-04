@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Sparkles, Upload, X, AlertCircle, Instagram, Twitter, Linkedin, Facebook } from 'lucide-react';
+import { Sparkles, Upload, X, AlertCircle } from 'lucide-react';
 
 interface InputSectionProps {
   onGenerate: (companyName: string, productName: string, description: string, imageUrl: string | null) => void;
@@ -92,13 +92,6 @@ export function InputSection({ onGenerate, isGenerating }: InputSectionProps) {
     onGenerate(companyName, productName, description, imageUrl);
   };
 
-  const platforms = [
-    { id: 'instagram', name: 'Instagram', icon: Instagram, color: 'from-purple-500 to-pink-500' },
-    { id: 'twitter', name: 'Twitter', icon: Twitter, color: 'from-blue-400 to-cyan-500' },
-    { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, color: 'from-blue-600 to-blue-800' },
-    { id: 'facebook', name: 'Facebook', icon: Facebook, color: 'from-blue-500 to-indigo-600' },
-  ];
-
   return (
     <div className="card-float p-8 mb-8 animate-fade-in">
       <div className="flex items-center gap-3 mb-6">
@@ -106,28 +99,6 @@ export function InputSection({ onGenerate, isGenerating }: InputSectionProps) {
           <Sparkles className="w-6 h-6 text-white" />
         </div>
         <h2 className="text-2xl font-bold text-[#3C3C3C]">Create Your Campaign</h2>
-      </div>
-
-      <div className="mb-6">
-        <h3 className="text-sm font-semibold text-[#3C3C3C] mb-4">Select Platforms</h3>
-        <div className="grid grid-cols-2 gap-4">
-          {platforms.map((platform) => {
-            const Icon = platform.icon;
-            return (
-              <div
-                key={platform.id}
-                className="bg-[#EFF3F4] rounded-2xl p-5 hover:bg-[#8FA6FF]/10 transition-all duration-300 cursor-pointer group"
-              >
-                <div className="flex items-center gap-3">
-                  <div className={`w-10 h-10 bg-gradient-to-br ${platform.color} rounded-xl flex items-center justify-center shadow-md`}>
-                    <Icon className="w-5 h-5 text-white" />
-                  </div>
-                  <span className="font-semibold text-[#3C3C3C] text-base">{platform.name}</span>
-                </div>
-              </div>
-            );
-          })}
-        </div>
       </div>
 
       <div className="space-y-6">

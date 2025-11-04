@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Sparkles, Building2, CalendarDays, Bell } from 'lucide-react';
+import { Sparkles, CalendarDays } from 'lucide-react';
 import { InputSection } from './components/InputSection';
 import { CaptionSelector } from './components/CaptionSelector';
 import { HashtagDisplay } from './components/HashtagDisplay';
@@ -229,13 +229,7 @@ function App() {
   };
 
   const handleStepClick = (step: 1 | 2 | 3) => {
-    if (step === 1) {
-      setCurrentStep(1);
-    } else if (step === 2 && generatedContent) {
-      setCurrentStep(2);
-    } else if (step === 3 && generatedContent && selectedTone) {
-      setCurrentStep(3);
-    }
+    setCurrentStep(step);
   };
 
   const handleLoadContent = (content: ContentHistoryType) => {
@@ -487,17 +481,6 @@ function App() {
           <div className="bg-white border-b border-[#EFF3F4] pb-1 mb-6">
             <div className="flex items-center justify-center gap-1">
               <button
-                onClick={() => setShowBrandModal(true)}
-                className={`btn-secondary flex items-center gap-2 ${
-                  false
-                    ? '!bg-[#8FA6FF] !text-white rounded-lg'
-                    : ''
-                }`}
-              >
-                <Building2 className="w-4 h-4" />
-                <span>{brandProfile ? `Brand: ${brandProfile.name}` : 'Set Up Brand Profile'}</span>
-              </button>
-              <button
                 onClick={() => setShowScheduleView(false)}
                 className={`btn-secondary flex items-center gap-2 ${
                   !showScheduleView
@@ -519,15 +502,6 @@ function App() {
                 <CalendarDays className="w-4 h-4" />
                 <span>Calendar & Alarms</span>
               </button>
-              <button
-                onClick={() => setShowVideoTips(!showVideoTips)}
-                className={`btn-secondary flex items-center gap-2 ${
-                  showVideoTips ? '!bg-[#8FA6FF] !text-white rounded-lg' : ''
-                }`}
-              >
-                <Bell className="w-4 h-4" />
-                <span>Video Tips</span>
-              </button>
             </div>
           </div>
           <div className="text-center">
@@ -546,8 +520,8 @@ function App() {
               onStepClick={handleStepClick}
               canNavigate={{
                 step1: true,
-                step2: generatedContent !== null,
-                step3: generatedContent !== null && selectedTone !== null
+                step2: true,
+                step3: true
               }}
             />
             {currentStep === 1 && (
@@ -566,71 +540,97 @@ function App() {
               </div>
             )}
 
-            {currentStep === 2 && generatedContent && (
+            {currentStep === 2 && (
               <>
-                {visualSuggestions.length > 0 && (
-                  <VisualSuggestions suggestions={visualSuggestions} />
+                {generatedContent ? (
+                  <>
+                    {visualSuggestions.length > 0 && (
+                      <VisualSuggestions suggestions={visualSuggestions} />
+                    )}
+
+                    {postOutline && <PostOutline outline={postOutline} />}
+
+                    <CaptionSelector content={generatedContent} onSelectTone={handleSelectTone} />
+                    <HashtagDisplay
+                      hashtags={generatedContent.hashtags}
+                      onHashtagsChange={(updatedHashtags) => {
+                        setGeneratedContent({
+                          ...generatedContent,
+                          hashtags: updatedHashtags
+                        });
+                      }}
+                    />
+                  </>
+                ) : (
+                  <div className="card-float text-center py-16 animate-fade-in">
+                    <div className="w-20 h-20 bg-gradient-to-br from-[#8FA6FF] to-[#7A95FF] rounded-[20px] flex items-center justify-center mx-auto mb-4">
+                      <Sparkles className="w-10 h-10 text-white" />
+                    </div>
+                    <p className="text-[#3C3C3C] text-lg">
+                      Generate content first to see AI suggestions and captions
+                    </p>
+                  </div>
                 )}
-
-                {postOutline && <PostOutline outline={postOutline} />}
-
-                <CaptionSelector content={generatedContent} onSelectTone={handleSelectTone} />
-                <HashtagDisplay
-                  hashtags={generatedContent.hashtags}
-                  onHashtagsChange={(updatedHashtags) => {
-                    setGeneratedContent({
-                      ...generatedContent,
-                      hashtags: updatedHashtags
-                    });
-                  }}
-                />
               </>
             )}
 
-            {currentStep === 3 && generatedContent && (
+            {currentStep === 3 && (
               <>
-                <PlatformPreviews
-                  caption={getSelectedCaption()}
-                  hashtags={generatedContent.hashtags}
-                  imageUrl={imageUrl}
-                  resizedImages={resizedImages}
-                />
+                {generatedContent ? (
+                  <>
+                    <PlatformPreviews
+                      caption={getSelectedCaption()}
+                      hashtags={generatedContent.hashtags}
+                      imageUrl={imageUrl}
+                      resizedImages={resizedImages}
+                    />
 
-                <div className="card-float p-6 mb-8">
-                  <div className="flex flex-col gap-4">
-                    <div className="flex items-center justify-between">
-                      <div>
-                        <h3 className="text-lg font-bold text-gray-800 mb-1">Ready to schedule?</h3>
-                        <p className="text-sm text-gray-600">Schedule this content for future posting or view your calendar</p>
-                      </div>
-                      <div className="flex gap-3">
-                        <button
-                          onClick={() => setShowScheduleView(true)}
-                          className="btn-secondary flex items-center gap-2"
-                        >
-                          <CalendarDays className="w-5 h-5" />
-                          View Calendar
-                        </button>
-                        <button
-                          onClick={() => setShowScheduleModal(true)}
-                          className="btn-schedule flex items-center gap-2"
-                        >
-                          <CalendarDays className="w-5 h-5" />
-                          Schedule Post
-                        </button>
+                    <div className="card-float p-6 mb-8">
+                      <div className="flex flex-col gap-4">
+                        <div className="flex items-center justify-between">
+                          <div>
+                            <h3 className="text-lg font-bold text-gray-800 mb-1">Ready to schedule?</h3>
+                            <p className="text-sm text-gray-600">Schedule this content for future posting or view your calendar</p>
+                          </div>
+                          <div className="flex gap-3">
+                            <button
+                              onClick={() => setShowScheduleView(true)}
+                              className="btn-secondary flex items-center gap-2"
+                            >
+                              <CalendarDays className="w-5 h-5" />
+                              View Calendar
+                            </button>
+                            <button
+                              onClick={() => setShowScheduleModal(true)}
+                              className="btn-schedule flex items-center gap-2"
+                            >
+                              <CalendarDays className="w-5 h-5" />
+                              Schedule Post
+                            </button>
+                          </div>
+                        </div>
+                        {scheduledPosts.length > 0 && (
+                          <div className="border-t pt-4">
+                            <p className="text-sm text-gray-600 mb-2">
+                              You have {scheduledPosts.length} scheduled post{scheduledPosts.length !== 1 ? 's' : ''}
+                            </p>
+                          </div>
+                        )}
                       </div>
                     </div>
-                    {scheduledPosts.length > 0 && (
-                      <div className="border-t pt-4">
-                        <p className="text-sm text-gray-600 mb-2">
-                          You have {scheduledPosts.length} scheduled post{scheduledPosts.length !== 1 ? 's' : ''}
-                        </p>
-                      </div>
-                    )}
-                  </div>
-                </div>
 
-                <ExportSection content={generatedContent} selectedCaption={getSelectedCaption()} />
+                    <ExportSection content={generatedContent} selectedCaption={getSelectedCaption()} />
+                  </>
+                ) : (
+                  <div className="card-float text-center py-16 animate-fade-in">
+                    <div className="w-20 h-20 bg-gradient-to-br from-[#8FA6FF] to-[#7A95FF] rounded-[20px] flex items-center justify-center mx-auto mb-4">
+                      <Sparkles className="w-10 h-10 text-white" />
+                    </div>
+                    <p className="text-[#3C3C3C] text-lg">
+                      Generate content first to see platform previews and export options
+                    </p>
+                  </div>
+                )}
               </>
             )}
 
@@ -716,13 +716,6 @@ function App() {
           </>
         )}
       </div>
-
-      <BrandProfileModal
-        isOpen={showBrandModal}
-        onClose={() => setShowBrandModal(false)}
-        onSave={saveBrandProfile}
-        existingProfile={brandProfile}
-      />
 
       <ScheduleModal
         isOpen={showScheduleModal}
