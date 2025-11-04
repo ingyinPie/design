@@ -190,7 +190,7 @@ export function ScheduleModal({ isOpen, onClose, onSchedule, prefilledData }: Sc
             <button
               type="submit"
               disabled={platforms.length === 0}
-              className="flex-1 px-6 py-3 bg-[#8FA6FF] text-white rounded-xl font-semibold hover:bg-[#7A95FF] disabled:bg-gray-300 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
+              className="flex-1 px-6 py-3 bg-gradient-to-r from-blue-500 to-cyan-600 text-white rounded-xl font-semibold hover:from-blue-600 hover:to-cyan-700 disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
             >
               <Save className="w-4 h-4" />
               Schedule Post

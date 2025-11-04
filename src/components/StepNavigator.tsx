@@ -18,13 +18,15 @@ export function StepNavigator({ currentStep, onStepClick, canNavigate }: StepNav
   ];
 
   return (
-    <div className="card-float p-5 mb-8 animate-fade-in">
+    <div className="card-float p-6 mb-8 animate-fade-in">
       <div className="flex items-center justify-between">
         {steps.map((step, index) => (
           <div key={step.number} className="flex items-center flex-1">
-            <div
+            <button
+              onClick={() => step.enabled && onStepClick(step.number as 1 | 2 | 3)}
+              disabled={!step.enabled}
               className={`flex items-center gap-2 ${
-                step.enabled ? '' : 'opacity-50'
+                step.enabled ? 'cursor-pointer' : 'cursor-not-allowed opacity-50'
               }`}
             >
               <div
@@ -54,7 +56,7 @@ export function StepNavigator({ currentStep, onStepClick, canNavigate }: StepNav
                   {step.label}
                 </div>
               </div>
-            </div>
+            </button>
             {index < steps.length - 1 && (
               <div
                 className={`flex-1 h-1 mx-4 rounded-full transition-all duration-300 ${

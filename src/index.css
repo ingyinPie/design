@@ -55,8 +55,8 @@
   }
 
   .btn-secondary {
-    @apply bg-transparent text-[#3C3C3C] font-medium rounded-lg px-5 py-2.5
-           transition-all duration-300 hover:bg-gray-50 text-sm;
+    @apply bg-white text-[#3C3C3C] font-semibold rounded-2xl px-6 py-3
+           transition-all duration-300 hover:bg-gray-50 uppercase text-sm tracking-wide;
     border: none;
   }
 
@@ -74,10 +74,6 @@
     transform: scale(1.1);
   }
 
-  .accent-highlight {
-    @apply border-l-4 border-[#8FA6FF] pl-4;
-  }
-
   .suggestion-card {
     @apply bg-white rounded-[16px] border border-transparent p-5 cursor-pointer
            transition-all duration-300 relative;
@@ -85,15 +81,15 @@
   }
 
   .suggestion-card:hover {
-    border-color: #8FA6FF;
+    border-color: #FFA45B;
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12), 0 0 0 1px #8FA6FF;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12), 0 0 0 1px #FFA45B;
   }
 
   .suggestion-card.active {
-    border-color: #8FA6FF;
+    border-color: #FFA45B;
     border-width: 2px;
-    box-shadow: 0 6px 20px rgba(143, 166, 255, 0.3), inset 0 0 20px rgba(143, 166, 255, 0.1);
+    box-shadow: 0 6px 20px rgba(255, 164, 91, 0.3), inset 0 0 20px rgba(255, 164, 91, 0.1);
   }
 
   .suggestion-card.inactive {
@@ -134,7 +130,7 @@
   .step-circle {
     @apply w-10 h-10 rounded-full border-2 border-[#8FA6FF] bg-white
            flex items-center justify-center text-[#8FA6FF] font-bold text-base
-           transition-all duration-300 pointer-events-none;
+           transition-all duration-300;
   }
 
   .step-circle.active {
@@ -153,10 +149,10 @@
 
 @keyframes scheduleFlash {
   0%, 100% {
-    box-shadow: 0 0 0 rgba(143, 166, 255, 0);
+    box-shadow: 0 0 0 rgba(255, 164, 91, 0);
   }
   50% {
-    box-shadow: 0 0 30px rgba(143, 166, 255, 0.8);
+    box-shadow: 0 0 30px rgba(255, 164, 91, 0.8);
   }
 }
 
