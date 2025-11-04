@@ -539,8 +539,6 @@ function App() {
           </div>
         </header>
 
-        {showVideoTips && <VideoOptimizationTips />}
-
         {!showScheduleView ? (
           <>
             <StepNavigator
@@ -553,14 +551,19 @@ function App() {
               }}
             />
             {currentStep === 1 && (
-              <>
-                <ContentHistory
-                  history={contentHistory}
-                  onLoadContent={handleLoadContent}
-                  onDeleteContent={handleDeleteContent}
-                />
-                <InputSection onGenerate={handleGenerate} isGenerating={isGenerating} />
-              </>
+              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <div className="lg:col-span-8">
+                  <ContentHistory
+                    history={contentHistory}
+                    onLoadContent={handleLoadContent}
+                    onDeleteContent={handleDeleteContent}
+                  />
+                  <InputSection onGenerate={handleGenerate} isGenerating={isGenerating} />
+                </div>
+                <div className="lg:col-span-4">
+                  <VideoOptimizationTips />
+                </div>
+              </div>
             )}
 
             {currentStep === 2 && generatedContent && (
@@ -631,18 +634,6 @@ function App() {
               </>
             )}
 
-            {!generatedContent && !isGenerating && (
-              <div className="card-float text-center py-16 animate-fade-in">
-                <div className="w-20 h-20 bg-gradient-to-br from-orange-200 to-orange-300 rounded-[20px] flex items-center justify-center mx-auto mb-4">
-                  <Sparkles className="w-10 h-10 text-orange-500" />
-                </div>
-                <p className="text-gray-500 text-lg">
-                  {brandProfile
-                    ? 'Enter your campaign description to generate on-brand content with AI visual suggestions'
-                    : 'Setup your brand profile and start generating content'}
-                </p>
-              </div>
-            )}
           </>
         ) : (
           <>
