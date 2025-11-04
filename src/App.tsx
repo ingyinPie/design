@@ -492,52 +492,52 @@ function App() {
               AutoPostr
             </h1>
           </div>
-          <p className="text-[#3C3C3C] text-lg mb-6">
+          <p className="text-[#3C3C3C] text-base mb-8">
             AI-Powered Content Generator with Visual Suggestions
           </p>
-          <div className="bg-white border-b border-[#EFF3F4]">
-            <div className="flex items-center justify-center gap-0 flex-wrap">
+          <div className="bg-white border-b border-[#C8D1D4] pb-1">
+            <div className="flex items-center justify-center gap-1">
               <button
                 onClick={() => setShowBrandModal(true)}
-                className={`btn-secondary border-none ${
+                className={`btn-secondary flex items-center gap-2 ${
                   false
-                    ? '!bg-[#8FA6FF] !text-white'
+                    ? '!bg-[#5C9DFF] !text-white rounded-lg'
                     : ''
                 }`}
               >
                 <Building2 className="w-4 h-4" />
-                {brandProfile ? `Brand: ${brandProfile.name}` : 'Set Up Brand Profile'}
+                <span>{brandProfile ? `Brand: ${brandProfile.name}` : 'Set Up Brand Profile'}</span>
               </button>
               <button
                 onClick={() => setShowScheduleView(false)}
-                className={`btn-secondary border-none ${
+                className={`btn-secondary flex items-center gap-2 ${
                   !showScheduleView
-                    ? '!bg-[#8FA6FF] !text-white'
+                    ? '!bg-[#5C9DFF] !text-white rounded-lg'
                     : ''
                 }`}
               >
                 <Sparkles className="w-4 h-4" />
-                Content Generator
+                <span>Content Generator</span>
               </button>
               <button
                 onClick={() => setShowScheduleView(true)}
-                className={`btn-secondary border-none ${
+                className={`btn-secondary flex items-center gap-2 ${
                   showScheduleView
-                    ? '!bg-[#8FA6FF] !text-white'
+                    ? '!bg-[#5C9DFF] !text-white rounded-lg'
                     : ''
                 }`}
               >
                 <CalendarDays className="w-4 h-4" />
-                Calendar
+                <span>Calendar & Alarms</span>
               </button>
               <button
                 onClick={() => setShowVideoTips(!showVideoTips)}
-                className={`btn-secondary border-none relative ${
-                  showVideoTips ? '!bg-[#8FA6FF] !text-white' : ''
+                className={`btn-secondary flex items-center gap-2 ${
+                  showVideoTips ? '!bg-[#5C9DFF] !text-white rounded-lg' : ''
                 }`}
               >
                 <Bell className="w-4 h-4" />
-                Alarms
+                <span>Video Tips</span>
               </button>
             </div>
           </div>

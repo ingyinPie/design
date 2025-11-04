@@ -89,14 +89,14 @@ export function ScheduledPostsList({ scheduledPosts, plannedPosts, selectedDate,
 
   if (sortedPosts.length === 0) {
     return (
-      <div className="bg-white rounded-2xl shadow-lg p-8 text-center">
-        <div className="w-16 h-16 bg-gray-100 rounded-full flex items-center justify-center mx-auto mb-4">
-          <Clock className="w-8 h-8 text-gray-400" />
+      <div className="bg-[#C8D1D4] rounded-2xl shadow-md p-8 text-center border-2 border-[#5C9DFF]">
+        <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-[#5C9DFF]">
+          <Clock className="w-8 h-8 text-[#5C9DFF]" />
         </div>
-        <h3 className="text-lg font-semibold text-gray-800 mb-2">
+        <h3 className="text-lg font-semibold text-[#3C3C3C] mb-2">
           {selectedDate ? 'No posts scheduled for this date' : 'No scheduled posts'}
         </h3>
-        <p className="text-gray-600 text-sm">
+        <p className="text-[#3C3C3C] text-sm">
           {selectedDate
             ? 'Select another date or create a new scheduled post'
             : 'Create your first scheduled post to see it here'}
@@ -106,8 +106,8 @@ export function ScheduledPostsList({ scheduledPosts, plannedPosts, selectedDate,
   }
 
   return (
-    <div className="bg-white rounded-2xl shadow-lg p-6">
-      <h3 className="text-xl font-bold text-gray-800 mb-4">
+    <div className="bg-[#C8D1D4] rounded-2xl shadow-md p-6">
+      <h3 className="text-xl font-bold text-[#3C3C3C] mb-4">
         {selectedDate ? `Posts for ${formatDate(selectedDate.toISOString())}` : 'All Scheduled Posts'}
       </h3>
 
@@ -117,7 +117,7 @@ export function ScheduledPostsList({ scheduledPosts, plannedPosts, selectedDate,
           return (
             <div
               key={post.id}
-              className="border border-gray-200 rounded-xl p-4 hover:border-blue-300 transition-colors"
+              className="border-2 border-[#5C9DFF] bg-white rounded-xl p-4 hover:shadow-[0_0_0_3px_rgba(92,157,255,0.3)] transition-all"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0">

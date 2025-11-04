@@ -46,7 +46,7 @@ export function StepNavigator({ currentStep, onStepClick, canNavigate }: StepNav
               </div>
               <div className="text-left">
                 <div className={`text-xs font-bold ${
-                  currentStep === step.number ? 'text-[#8FA6FF]' : 'text-[#3C3C3C]'
+                  currentStep === step.number ? 'text-[#5C9DFF]' : 'text-[#3C3C3C]'
                 }`}>
                   Step {step.number}
                 </div>
@@ -60,7 +60,7 @@ export function StepNavigator({ currentStep, onStepClick, canNavigate }: StepNav
             {index < steps.length - 1 && (
               <div
                 className={`flex-1 h-1 mx-4 rounded-full transition-all duration-300 ${
-                  currentStep > step.number ? 'bg-[#8FA6FF]' : 'bg-gray-200'
+                  currentStep > step.number ? 'bg-[#5C9DFF]' : 'bg-gray-200'
                 }`}
               />
             )}
