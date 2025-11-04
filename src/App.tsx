@@ -479,7 +479,7 @@ function App() {
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         <header className="mb-8 animate-fade-in">
           <div className="bg-white border-b border-[#EFF3F4] pb-1 mb-6">
-            <div className="flex items-center justify-center gap-1">
+            <div className="flex items-center justify-start gap-1">
               <button
                 onClick={() => setShowScheduleView(false)}
                 className={`btn-secondary flex items-center gap-2 ${

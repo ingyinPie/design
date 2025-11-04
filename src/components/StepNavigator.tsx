@@ -22,13 +22,14 @@ export function StepNavigator({ currentStep, onStepClick, canNavigate }: StepNav
       <div className="flex items-center justify-between">
         {steps.map((step, index) => (
           <div key={step.number} className="flex items-center flex-1">
-            <div
-              className={`flex items-center gap-2 ${
+            <button
+              onClick={() => onStepClick(step.number as 1 | 2 | 3)}
+              className={`flex items-center gap-2 cursor-pointer hover:opacity-80 transition-opacity ${
                 step.enabled ? '' : 'opacity-50'
               }`}
             >
               <div
-                className={`step-circle ${
+                className={`step-circle cursor-pointer ${
                   currentStep === step.number
                     ? 'active'
                     : currentStep > step.number
@@ -54,7 +55,7 @@ export function StepNavigator({ currentStep, onStepClick, canNavigate }: StepNav
                   {step.label}
                 </div>
               </div>
-            </div>
+            </button>
             {index < steps.length - 1 && (
               <div
                 className={`flex-1 h-1 mx-4 rounded-full transition-all duration-300 ${

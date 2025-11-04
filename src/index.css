@@ -134,7 +134,7 @@
   .step-circle {
     @apply w-10 h-10 rounded-full border-2 border-[#8FA6FF] bg-white
            flex items-center justify-center text-[#8FA6FF] font-bold text-base
-           transition-all duration-300 pointer-events-none;
+           transition-all duration-300 cursor-pointer hover:scale-110;
   }
 
   .step-circle.active {
