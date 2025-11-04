@@ -21,13 +21,13 @@
 
 @layer components {
   .input-orange {
-    @apply bg-white border-[1.5px] border-[#8FA6FF] text-gray-900 rounded-2xl px-4 py-3
-           focus:outline-none focus:ring-0 focus:border-[#8FA6FF] transition-all duration-300;
-    box-shadow: 0 0 0 0 rgba(143, 166, 255, 0);
+    @apply bg-white border-[1.5px] border-[#5C9DFF] text-gray-900 rounded-2xl px-4 py-3
+           focus:outline-none focus:ring-0 focus:border-[#5C9DFF] transition-all duration-300;
+    box-shadow: 0 0 0 0 rgba(92, 157, 255, 0);
   }
 
   .input-orange:focus {
-    box-shadow: 0 0 6px rgba(143, 166, 255, 0.7);
+    box-shadow: 0 0 6px rgba(92, 157, 255, 0.7);
   }
 
   .input-orange::placeholder {
@@ -35,7 +35,7 @@
   }
 
   .card-float {
-    @apply bg-[#EFF3F4] rounded-[16px] transition-all duration-300 relative;
+    @apply bg-[#C8D1D4] rounded-[16px] transition-all duration-300 relative;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06);
     z-index: 1;
   }
@@ -46,8 +46,8 @@
   }
 
   .btn-primary {
-    @apply bg-[#8FA6FF] text-white font-bold rounded-2xl px-6 py-3
-           transition-all duration-300 hover:bg-[#7A95FF] uppercase text-sm tracking-wide;
+    @apply bg-[#5C9DFF] text-white font-bold rounded-2xl px-6 py-3
+           transition-all duration-300 hover:bg-[#4A8BFF] uppercase text-sm tracking-wide;
   }
 
   .btn-primary:active {
@@ -61,21 +61,17 @@
   }
 
   .btn-schedule {
-    @apply bg-[#8FA6FF] text-white font-bold rounded-2xl px-6 py-3
+    @apply bg-[#5C9DFF] text-white font-bold rounded-2xl px-6 py-3
            transition-all duration-300 uppercase text-sm tracking-wide;
   }
 
   .btn-schedule:hover {
-    box-shadow: 0 0 15px rgba(143, 166, 255, 0.6);
+    box-shadow: 0 0 15px rgba(92, 157, 255, 0.6);
   }
 
   .btn-schedule:active {
     animation: scheduleFlash 0.5s ease;
     transform: scale(1.1);
-  }
-
-  .accent-highlight {
-    @apply border-l-4 border-[#8FA6FF] pl-4;
   }
 
   .suggestion-card {
@@ -85,15 +81,15 @@
   }
 
   .suggestion-card:hover {
-    border-color: #8FA6FF;
+    border-color: #FFA45B;
     transform: translateY(-3px);
-    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12), 0 0 0 1px #8FA6FF;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12), 0 0 0 1px #FFA45B;
   }
 
   .suggestion-card.active {
-    border-color: #8FA6FF;
+    border-color: #FFA45B;
     border-width: 2px;
-    box-shadow: 0 6px 20px rgba(143, 166, 255, 0.3), inset 0 0 20px rgba(143, 166, 255, 0.1);
+    box-shadow: 0 6px 20px rgba(255, 164, 91, 0.3), inset 0 0 20px rgba(255, 164, 91, 0.1);
   }
 
   .suggestion-card.inactive {
@@ -132,17 +128,17 @@
   }
 
   .step-circle {
-    @apply w-10 h-10 rounded-full border-2 border-[#8FA6FF] bg-white
-           flex items-center justify-center text-[#8FA6FF] font-bold text-base
-           transition-all duration-300 pointer-events-none;
+    @apply w-10 h-10 rounded-full border-2 border-[#5C9DFF] bg-white
+           flex items-center justify-center text-[#5C9DFF] font-bold text-base
+           transition-all duration-300;
   }
 
   .step-circle.active {
-    @apply bg-[#8FA6FF] text-white border-[#8FA6FF];
+    @apply bg-[#5C9DFF] text-white border-[#5C9DFF];
   }
 
   .step-circle.completed {
-    @apply bg-[#8FA6FF] text-white border-[#8FA6FF];
+    @apply bg-[#5C9DFF] text-white border-[#5C9DFF];
   }
 }
 
@@ -153,10 +149,10 @@
 
 @keyframes scheduleFlash {
   0%, 100% {
-    box-shadow: 0 0 0 rgba(143, 166, 255, 0);
+    box-shadow: 0 0 0 rgba(255, 164, 91, 0);
   }
   50% {
-    box-shadow: 0 0 30px rgba(143, 166, 255, 0.8);
+    box-shadow: 0 0 30px rgba(255, 164, 91, 0.8);
   }
 }
 

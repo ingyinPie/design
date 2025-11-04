@@ -89,9 +89,9 @@ export function ScheduledPostsList({ scheduledPosts, plannedPosts, selectedDate,
 
   if (sortedPosts.length === 0) {
     return (
-      <div className="bg-[#EFF3F4] rounded-2xl shadow-md p-8 text-center accent-highlight">
-        <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-[#8FA6FF]">
-          <Clock className="w-8 h-8 text-[#8FA6FF]" />
+      <div className="bg-[#C8D1D4] rounded-2xl shadow-md p-8 text-center border-2 border-[#5C9DFF]">
+        <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-[#5C9DFF]">
+          <Clock className="w-8 h-8 text-[#5C9DFF]" />
         </div>
         <h3 className="text-lg font-semibold text-[#3C3C3C] mb-2">
           {selectedDate ? 'No posts scheduled for this date' : 'No scheduled posts'}
@@ -106,7 +106,7 @@ export function ScheduledPostsList({ scheduledPosts, plannedPosts, selectedDate,
   }
 
   return (
-    <div className="bg-[#EFF3F4] rounded-2xl shadow-md p-6">
+    <div className="bg-[#C8D1D4] rounded-2xl shadow-md p-6">
       <h3 className="text-xl font-bold text-[#3C3C3C] mb-4">
         {selectedDate ? `Posts for ${formatDate(selectedDate.toISOString())}` : 'All Scheduled Posts'}
       </h3>
@@ -117,7 +117,7 @@ export function ScheduledPostsList({ scheduledPosts, plannedPosts, selectedDate,
           return (
             <div
               key={post.id}
-              className="bg-white rounded-xl p-4 transition-all accent-highlight hover:shadow-lg"
+              className="border-2 border-[#5C9DFF] bg-white rounded-xl p-4 hover:shadow-[0_0_0_3px_rgba(92,157,255,0.3)] transition-all"
             >
               <div className="flex items-start justify-between gap-4">
                 <div className="flex-1 min-w-0">

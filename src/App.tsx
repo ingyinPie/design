@@ -483,14 +483,25 @@ function App() {
   return (
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8 max-w-7xl">
-        <header className="mb-8 animate-fade-in">
-          <div className="bg-white border-b border-[#EFF3F4] pb-1 mb-6">
+        <header className="text-center mb-8 animate-fade-in">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-500 rounded-[20px] flex items-center justify-center shadow-lg">
+              <Sparkles className="w-8 h-8 text-white" />
+            </div>
+            <h1 className="text-5xl font-bold text-[#3C3C3C]">
+              AutoPostr
+            </h1>
+          </div>
+          <p className="text-[#3C3C3C] text-base mb-8">
+            AI-Powered Content Generator with Visual Suggestions
+          </p>
+          <div className="bg-white border-b border-[#C8D1D4] pb-1">
             <div className="flex items-center justify-center gap-1">
               <button
                 onClick={() => setShowBrandModal(true)}
                 className={`btn-secondary flex items-center gap-2 ${
                   false
-                    ? '!bg-[#8FA6FF] !text-white rounded-lg'
+                    ? '!bg-[#5C9DFF] !text-white rounded-lg'
                     : ''
                 }`}
               >
@@ -501,7 +512,7 @@ function App() {
                 onClick={() => setShowScheduleView(false)}
                 className={`btn-secondary flex items-center gap-2 ${
                   !showScheduleView
-                    ? '!bg-[#8FA6FF] !text-white rounded-lg'
+                    ? '!bg-[#5C9DFF] !text-white rounded-lg'
                     : ''
                 }`}
               >
@@ -512,7 +523,7 @@ function App() {
                 onClick={() => setShowScheduleView(true)}
                 className={`btn-secondary flex items-center gap-2 ${
                   showScheduleView
-                    ? '!bg-[#8FA6FF] !text-white rounded-lg'
+                    ? '!bg-[#5C9DFF] !text-white rounded-lg'
                     : ''
                 }`}
               >
@@ -522,19 +533,12 @@ function App() {
               <button
                 onClick={() => setShowVideoTips(!showVideoTips)}
                 className={`btn-secondary flex items-center gap-2 ${
-                  showVideoTips ? '!bg-[#8FA6FF] !text-white rounded-lg' : ''
+                  showVideoTips ? '!bg-[#5C9DFF] !text-white rounded-lg' : ''
                 }`}
               >
                 <Bell className="w-4 h-4" />
                 <span>Video Tips</span>
               </button>
-            </div>
-          </div>
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-3 mb-2">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#8FA6FF] to-[#7A95FF] rounded-[16px] flex items-center justify-center shadow-md">
-                <Sparkles className="w-6 h-6 text-white" />
-              </div>
             </div>
           </div>
         </header>
