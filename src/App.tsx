@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Sparkles, CalendarDays } from 'lucide-react';
+import { Sparkles, Building2, CalendarDays, Bell } from 'lucide-react';
 import { InputSection } from './components/InputSection';
 import { CaptionSelector } from './components/CaptionSelector';
 import { HashtagDisplay } from './components/HashtagDisplay';
@@ -229,7 +229,13 @@ function App() {
   };
 
   const handleStepClick = (step: 1 | 2 | 3) => {
-    setCurrentStep(step);
+    if (step === 1) {
+      setCurrentStep(1);
+    } else if (step === 2 && generatedContent) {
+      setCurrentStep(2);
+    } else if (step === 3 && generatedContent && selectedTone) {
+      setCurrentStep(3);
+    }
   };
 
   const handleLoadContent = (content: ContentHistoryType) => {
@@ -477,14 +483,36 @@ function App() {
   return (
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8 max-w-7xl">
-        <header className="mb-8 animate-fade-in">
-          <div className="bg-white border-b border-[#EFF3F4] pb-1 mb-6">
+        <header className="text-center mb-8 animate-fade-in">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <div className="w-16 h-16 bg-gradient-to-br from-orange-400 to-orange-500 rounded-[20px] flex items-center justify-center shadow-lg">
+              <Sparkles className="w-8 h-8 text-white" />
+            </div>
+            <h1 className="text-5xl font-bold text-[#3C3C3C]">
+              AutoPostr
+            </h1>
+          </div>
+          <p className="text-[#3C3C3C] text-base mb-8">
+            AI-Powered Content Generator with Visual Suggestions
+          </p>
+          <div className="bg-white border-b border-[#C8D1D4] pb-1">
             <div className="flex items-center justify-center gap-1">
+              <button
+                onClick={() => setShowBrandModal(true)}
+                className={`btn-secondary flex items-center gap-2 ${
+                  false
+                    ? '!bg-[#5C9DFF] !text-white rounded-lg'
+                    : ''
+                }`}
+              >
+                <Building2 className="w-4 h-4" />
+                <span>{brandProfile ? `Brand: ${brandProfile.name}` : 'Set Up Brand Profile'}</span>
+              </button>
               <button
                 onClick={() => setShowScheduleView(false)}
                 className={`btn-secondary flex items-center gap-2 ${
                   !showScheduleView
-                    ? '!bg-[#8FA6FF] !text-white rounded-lg'
+                    ? '!bg-[#5C9DFF] !text-white rounded-lg'
                     : ''
                 }`}
               >
@@ -495,23 +523,27 @@ function App() {
                 onClick={() => setShowScheduleView(true)}
                 className={`btn-secondary flex items-center gap-2 ${
                   showScheduleView
-                    ? '!bg-[#8FA6FF] !text-white rounded-lg'
+                    ? '!bg-[#5C9DFF] !text-white rounded-lg'
                     : ''
                 }`}
               >
                 <CalendarDays className="w-4 h-4" />
                 <span>Calendar & Alarms</span>
               </button>
-            </div>
-          </div>
-          <div className="text-center">
-            <div className="flex items-center justify-center gap-3 mb-2">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#8FA6FF] to-[#7A95FF] rounded-[16px] flex items-center justify-center shadow-md">
-                <Sparkles className="w-6 h-6 text-white" />
-              </div>
+              <button
+                onClick={() => setShowVideoTips(!showVideoTips)}
+                className={`btn-secondary flex items-center gap-2 ${
+                  showVideoTips ? '!bg-[#5C9DFF] !text-white rounded-lg' : ''
+                }`}
+              >
+                <Bell className="w-4 h-4" />
+                <span>Video Tips</span>
+              </button>
             </div>
           </div>
         </header>
+
+        {showVideoTips && <VideoOptimizationTips />}
 
         {!showScheduleView ? (
           <>
@@ -520,120 +552,101 @@ function App() {
               onStepClick={handleStepClick}
               canNavigate={{
                 step1: true,
-                step2: true,
-                step3: true
+                step2: generatedContent !== null,
+                step3: generatedContent !== null && selectedTone !== null
               }}
             />
             {currentStep === 1 && (
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <div className="lg:col-span-8">
-                  <ContentHistory
-                    history={contentHistory}
-                    onLoadContent={handleLoadContent}
-                    onDeleteContent={handleDeleteContent}
-                  />
-                  <InputSection onGenerate={handleGenerate} isGenerating={isGenerating} />
-                </div>
-                <div className="lg:col-span-4">
-                  <VideoOptimizationTips />
-                </div>
-              </div>
-            )}
-
-            {currentStep === 2 && (
               <>
-                {generatedContent ? (
-                  <>
-                    {visualSuggestions.length > 0 && (
-                      <VisualSuggestions suggestions={visualSuggestions} />
-                    )}
-
-                    {postOutline && <PostOutline outline={postOutline} />}
-
-                    <CaptionSelector content={generatedContent} onSelectTone={handleSelectTone} />
-                    <HashtagDisplay
-                      hashtags={generatedContent.hashtags}
-                      onHashtagsChange={(updatedHashtags) => {
-                        setGeneratedContent({
-                          ...generatedContent,
-                          hashtags: updatedHashtags
-                        });
-                      }}
-                    />
-                  </>
-                ) : (
-                  <div className="card-float text-center py-16 animate-fade-in">
-                    <div className="w-20 h-20 bg-gradient-to-br from-[#8FA6FF] to-[#7A95FF] rounded-[20px] flex items-center justify-center mx-auto mb-4">
-                      <Sparkles className="w-10 h-10 text-white" />
-                    </div>
-                    <p className="text-[#3C3C3C] text-lg">
-                      Generate content first to see AI suggestions and captions
-                    </p>
-                  </div>
-                )}
+                <ContentHistory
+                  history={contentHistory}
+                  onLoadContent={handleLoadContent}
+                  onDeleteContent={handleDeleteContent}
+                />
+                <InputSection onGenerate={handleGenerate} isGenerating={isGenerating} />
               </>
             )}
 
-            {currentStep === 3 && (
+            {currentStep === 2 && generatedContent && (
               <>
-                {generatedContent ? (
-                  <>
-                    <PlatformPreviews
-                      caption={getSelectedCaption()}
-                      hashtags={generatedContent.hashtags}
-                      imageUrl={imageUrl}
-                      resizedImages={resizedImages}
-                    />
+                {visualSuggestions.length > 0 && (
+                  <VisualSuggestions suggestions={visualSuggestions} />
+                )}
 
-                    <div className="card-float p-6 mb-8">
-                      <div className="flex flex-col gap-4">
-                        <div className="flex items-center justify-between">
-                          <div>
-                            <h3 className="text-lg font-bold text-gray-800 mb-1">Ready to schedule?</h3>
-                            <p className="text-sm text-gray-600">Schedule this content for future posting or view your calendar</p>
-                          </div>
-                          <div className="flex gap-3">
-                            <button
-                              onClick={() => setShowScheduleView(true)}
-                              className="btn-secondary flex items-center gap-2"
-                            >
-                              <CalendarDays className="w-5 h-5" />
-                              View Calendar
-                            </button>
-                            <button
-                              onClick={() => setShowScheduleModal(true)}
-                              className="btn-schedule flex items-center gap-2"
-                            >
-                              <CalendarDays className="w-5 h-5" />
-                              Schedule Post
-                            </button>
-                          </div>
-                        </div>
-                        {scheduledPosts.length > 0 && (
-                          <div className="border-t pt-4">
-                            <p className="text-sm text-gray-600 mb-2">
-                              You have {scheduledPosts.length} scheduled post{scheduledPosts.length !== 1 ? 's' : ''}
-                            </p>
-                          </div>
-                        )}
+                {postOutline && <PostOutline outline={postOutline} />}
+
+                <CaptionSelector content={generatedContent} onSelectTone={handleSelectTone} />
+                <HashtagDisplay
+                  hashtags={generatedContent.hashtags}
+                  onHashtagsChange={(updatedHashtags) => {
+                    setGeneratedContent({
+                      ...generatedContent,
+                      hashtags: updatedHashtags
+                    });
+                  }}
+                />
+              </>
+            )}
+
+            {currentStep === 3 && generatedContent && (
+              <>
+                <PlatformPreviews
+                  caption={getSelectedCaption()}
+                  hashtags={generatedContent.hashtags}
+                  imageUrl={imageUrl}
+                  resizedImages={resizedImages}
+                />
+
+                <div className="card-float p-6 mb-8">
+                  <div className="flex flex-col gap-4">
+                    <div className="flex items-center justify-between">
+                      <div>
+                        <h3 className="text-lg font-bold text-gray-800 mb-1">Ready to schedule?</h3>
+                        <p className="text-sm text-gray-600">Schedule this content for future posting or view your calendar</p>
+                      </div>
+                      <div className="flex gap-3">
+                        <button
+                          onClick={() => setShowScheduleView(true)}
+                          className="btn-secondary flex items-center gap-2"
+                        >
+                          <CalendarDays className="w-5 h-5" />
+                          View Calendar
+                        </button>
+                        <button
+                          onClick={() => setShowScheduleModal(true)}
+                          className="btn-schedule flex items-center gap-2"
+                        >
+                          <CalendarDays className="w-5 h-5" />
+                          Schedule Post
+                        </button>
                       </div>
                     </div>
-
-                    <ExportSection content={generatedContent} selectedCaption={getSelectedCaption()} />
-                  </>
-                ) : (
-                  <div className="card-float text-center py-16 animate-fade-in">
-                    <div className="w-20 h-20 bg-gradient-to-br from-[#8FA6FF] to-[#7A95FF] rounded-[20px] flex items-center justify-center mx-auto mb-4">
-                      <Sparkles className="w-10 h-10 text-white" />
-                    </div>
-                    <p className="text-[#3C3C3C] text-lg">
-                      Generate content first to see platform previews and export options
-                    </p>
+                    {scheduledPosts.length > 0 && (
+                      <div className="border-t pt-4">
+                        <p className="text-sm text-gray-600 mb-2">
+                          You have {scheduledPosts.length} scheduled post{scheduledPosts.length !== 1 ? 's' : ''}
+                        </p>
+                      </div>
+                    )}
                   </div>
-                )}
+                </div>
+
+                <ExportSection content={generatedContent} selectedCaption={getSelectedCaption()} />
               </>
             )}
 
+            {!generatedContent && !isGenerating && (
+              <div className="card-float text-center py-16 animate-fade-in">
+                <div className="w-20 h-20 bg-gradient-to-br from-orange-200 to-orange-300 rounded-[20px] flex items-center justify-center mx-auto mb-4">
+                  <Sparkles className="w-10 h-10 text-orange-500" />
+                </div>
+                <p className="text-gray-500 text-lg">
+                  {brandProfile
+                    ? 'Enter your campaign description to generate on-brand content with AI visual suggestions'
+                    : 'Setup your brand profile and start generating content'}
+                </p>
+              </div>
+            )}
           </>
         ) : (
           <>
@@ -716,6 +729,13 @@ function App() {
           </>
         )}
       </div>
+
+      <BrandProfileModal
+        isOpen={showBrandModal}
+        onClose={() => setShowBrandModal(false)}
+        onSave={saveBrandProfile}
+        existingProfile={brandProfile}
+      />
 
       <ScheduleModal
         isOpen={showScheduleModal}
