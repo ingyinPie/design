@@ -95,15 +95,15 @@ export function InputSection({ onGenerate, isGenerating }: InputSectionProps) {
   return (
     <div className="card-float p-8 mb-8 animate-fade-in">
       <div className="flex items-center gap-3 mb-6">
-        <div className="w-12 h-12 bg-gradient-to-br from-orange-400 to-orange-500 rounded-[20px] flex items-center justify-center shadow-md">
+        <div className="w-12 h-12 bg-gradient-to-br from-[#8FA6FF] to-[#7A95FF] rounded-[20px] flex items-center justify-center shadow-md">
           <Sparkles className="w-6 h-6 text-white" />
         </div>
-        <h2 className="text-2xl font-bold text-gray-800">Create Your Campaign</h2>
+        <h2 className="text-2xl font-bold text-[#3C3C3C]">Create Your Campaign</h2>
       </div>
 
       <div className="space-y-6">
         <div>
-          <label htmlFor="companyName" className="block text-sm font-semibold text-gray-700 mb-2">
+          <label htmlFor="companyName" className="block text-sm font-semibold text-[#3C3C3C] mb-2">
             Company Name <span className="text-red-500">*</span>
           </label>
           <input
@@ -121,7 +121,7 @@ export function InputSection({ onGenerate, isGenerating }: InputSectionProps) {
         </div>
 
         <div>
-          <label htmlFor="productName" className="block text-sm font-semibold text-gray-700 mb-2">
+          <label htmlFor="productName" className="block text-sm font-semibold text-[#3C3C3C] mb-2">
             Product Name <span className="text-red-500">*</span>
           </label>
           <input
@@ -139,7 +139,7 @@ export function InputSection({ onGenerate, isGenerating }: InputSectionProps) {
         </div>
 
         <div>
-          <label htmlFor="description" className="block text-sm font-semibold text-gray-700 mb-2">
+          <label htmlFor="description" className="block text-sm font-semibold text-[#3C3C3C] mb-2">
             Campaign Description <span className="text-red-500">*</span>
           </label>
           <textarea
@@ -163,15 +163,15 @@ export function InputSection({ onGenerate, isGenerating }: InputSectionProps) {
         </div>
 
         <div>
-          <label className="block text-sm font-semibold text-gray-700 mb-2">
+          <label className="block text-sm font-semibold text-[#3C3C3C] mb-2">
             Campaign Image (Optional)
           </label>
 
           {!imageUrl ? (
-            <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-orange-300 rounded-2xl cursor-pointer hover:border-orange-400 hover:bg-orange-50 transition-all duration-300">
+            <label className="flex flex-col items-center justify-center w-full h-40 border-2 border-dashed border-[#8FA6FF] rounded-2xl cursor-pointer hover:border-[#7A95FF] hover:bg-blue-50 transition-all duration-300">
               <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                <Upload className="w-10 h-10 text-orange-400 mb-3" />
-                <p className="text-sm text-gray-600 font-medium">Click to upload image</p>
+                <Upload className="w-10 h-10 text-[#8FA6FF] mb-3" />
+                <p className="text-sm text-[#3C3C3C] font-medium">Click to upload image</p>
                 <p className="text-xs text-gray-500 mt-1">PNG, JPG or WEBP</p>
               </div>
               <input
@@ -183,7 +183,7 @@ export function InputSection({ onGenerate, isGenerating }: InputSectionProps) {
               />
             </label>
           ) : (
-            <div className="relative w-full h-40 rounded-2xl overflow-hidden border-2 border-orange-300">
+            <div className="relative w-full h-40 rounded-2xl overflow-hidden border-2 border-[#8FA6FF]">
               <img
                 src={imageUrl}
                 alt="Campaign preview"
