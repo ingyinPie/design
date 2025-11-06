@@ -478,7 +478,7 @@ function App() {
     <div className="min-h-screen bg-white">
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         <header className="mb-8 animate-fade-in">
-          <div className="bg-white border-b border-[#5ABA8A] pb-1 mb-6">
+          <div className="bg-white border-b border-[#EFF3F4] pb-1 mb-6">
             <div className="flex items-center justify-start gap-1">
               <button
                 onClick={() => setShowScheduleView(false)}
