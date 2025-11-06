@@ -21,7 +21,7 @@ export function PostOutline({ outline }: PostOutlineProps) {
     <div className="card-float p-6 mb-6 animate-fade-in">
       <div className="gradient-header-bg mb-6 inline-block">
         <div className="flex items-center gap-3">
-          <FileText className="w-6 h-6 text-[#8FA6FF]" />
+          <FileText className="w-6 h-6 text-[#196E7F]" />
           <h2 className="text-2xl font-bold text-[#3C3C3C]">Post Structure Outline</h2>
         </div>
       </div>
@@ -88,7 +88,7 @@ export function PostOutline({ outline }: PostOutlineProps) {
                   <div className={`w-7 h-7 rounded-full border-2 flex items-center justify-center text-sm font-bold flex-shrink-0 transition-all pointer-events-none ${
                     completedSteps.includes(index)
                       ? 'bg-green-500 text-white border-green-500'
-                      : 'bg-transparent border-[#8FA6FF] text-[#8FA6FF]'
+                      : 'bg-transparent border-[#196E7F] text-[#196E7F]'
                   }`}>
                     {completedSteps.includes(index) && (
                       <Check className="w-4 h-4 check-bounce" />
