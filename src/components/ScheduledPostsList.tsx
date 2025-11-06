@@ -90,8 +90,8 @@ export function ScheduledPostsList({ scheduledPosts, plannedPosts, selectedDate,
   if (sortedPosts.length === 0) {
     return (
       <div className="bg-[#EFF3F4] rounded-2xl shadow-md p-8 text-center accent-highlight">
-        <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-[#8FA6FF]">
-          <Clock className="w-8 h-8 text-[#8FA6FF]" />
+        <div className="w-16 h-16 bg-white rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-[#196E7F]">
+          <Clock className="w-8 h-8 text-[#196E7F]" />
         </div>
         <h3 className="text-lg font-semibold text-[#3C3C3C] mb-2">
           {selectedDate ? 'No posts scheduled for this date' : 'No scheduled posts'}

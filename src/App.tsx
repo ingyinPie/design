@@ -484,7 +484,7 @@ function App() {
                 onClick={() => setShowScheduleView(false)}
                 className={`btn-secondary flex items-center gap-2 ${
                   !showScheduleView
-                    ? '!bg-[#8FA6FF] !text-white rounded-lg'
+                    ? '!bg-[#196E7F] !text-white rounded-lg'
                     : ''
                 }`}
               >
@@ -495,7 +495,7 @@ function App() {
                 onClick={() => setShowScheduleView(true)}
                 className={`btn-secondary flex items-center gap-2 ${
                   showScheduleView
-                    ? '!bg-[#8FA6FF] !text-white rounded-lg'
+                    ? '!bg-[#196E7F] !text-white rounded-lg'
                     : ''
                 }`}
               >
@@ -506,7 +506,7 @@ function App() {
                 onClick={() => setShowVideoTips(!showVideoTips)}
                 className={`btn-secondary flex items-center gap-2 ${
                   showVideoTips
-                    ? '!bg-[#8FA6FF] !text-white rounded-lg'
+                    ? '!bg-[#196E7F] !text-white rounded-lg'
                     : ''
                 }`}
               >
@@ -517,7 +517,7 @@ function App() {
           </div>
           <div className="text-center">
             <div className="flex items-center justify-center gap-3 mb-2">
-              <div className="w-12 h-12 bg-gradient-to-br from-[#8FA6FF] to-[#7A95FF] rounded-[16px] flex items-center justify-center shadow-md">
+              <div className="w-12 h-12 bg-gradient-to-br from-[#196E7F] to-[#145963] rounded-[16px] flex items-center justify-center shadow-md">
                 <Sparkles className="w-6 h-6 text-white" />
               </div>
             </div>
@@ -574,7 +574,7 @@ function App() {
                   </>
                 ) : (
                   <div className="card-float text-center py-16 animate-fade-in">
-                    <div className="w-20 h-20 bg-gradient-to-br from-[#8FA6FF] to-[#7A95FF] rounded-[20px] flex items-center justify-center mx-auto mb-4">
+                    <div className="w-20 h-20 bg-gradient-to-br from-[#196E7F] to-[#145963] rounded-[20px] flex items-center justify-center mx-auto mb-4">
                       <Sparkles className="w-10 h-10 text-white" />
                     </div>
                     <p className="text-[#3C3C3C] text-lg">
@@ -634,7 +634,7 @@ function App() {
                   </>
                 ) : (
                   <div className="card-float text-center py-16 animate-fade-in">
-                    <div className="w-20 h-20 bg-gradient-to-br from-[#8FA6FF] to-[#7A95FF] rounded-[20px] flex items-center justify-center mx-auto mb-4">
+                    <div className="w-20 h-20 bg-gradient-to-br from-[#196E7F] to-[#145963] rounded-[20px] flex items-center justify-center mx-auto mb-4">
                       <Sparkles className="w-10 h-10 text-white" />
                     </div>
                     <p className="text-[#3C3C3C] text-lg">

@@ -141,8 +141,8 @@ export function Calendar({ scheduledPosts, plannedPosts, onDateSelect, onPostCli
     <div className="bg-[#EFF3F4] rounded-2xl shadow-md p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl flex items-center justify-center border-2 border-[#8FA6FF]">
-            <CalendarIcon className="w-5 h-5 text-[#8FA6FF]" />
+          <div className="w-10 h-10 rounded-xl flex items-center justify-center border-2 border-[#196E7F]">
+            <CalendarIcon className="w-5 h-5 text-[#196E7F]" />
           </div>
           <h2 className="text-2xl font-bold text-[#3C3C3C]">Content Calendar</h2>
         </div>

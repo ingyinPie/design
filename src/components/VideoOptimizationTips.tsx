@@ -18,8 +18,8 @@ export function VideoOptimizationTips() {
         className="w-full flex items-center justify-between p-6 hover:bg-gray-100 transition-colors"
       >
         <div className="flex items-center gap-3">
-          <div className="w-10 h-10 rounded-xl flex items-center justify-center border-2 border-[#8FA6FF]">
-            <Video className="w-5 h-5 text-[#8FA6FF]" />
+          <div className="w-10 h-10 rounded-xl flex items-center justify-center border-2 border-[#196E7F]">
+            <Video className="w-5 h-5 text-[#196E7F]" />
           </div>
           <div className="text-left">
             <h2 className="text-xl font-bold text-[#3C3C3C]">Video Tips</h2>
@@ -28,9 +28,9 @@ export function VideoOptimizationTips() {
         </div>
         <div className="flex items-center gap-2">
           {isExpanded ? (
-            <ChevronUp className="w-5 h-5 text-[#8FA6FF]" />
+            <ChevronUp className="w-5 h-5 text-[#196E7F]" />
           ) : (
-            <ChevronDown className="w-5 h-5 text-[#8FA6FF]" />
+            <ChevronDown className="w-5 h-5 text-[#196E7F]" />
           )}
         </div>
       </button>
