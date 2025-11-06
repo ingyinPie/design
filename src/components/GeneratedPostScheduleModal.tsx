@@ -1,0 +1,297 @@
+import { useState } from 'react';
+import { X, Calendar as CalendarIcon, Clock, Instagram, Twitter, Linkedin, Facebook, Save, Sparkles } from 'lucide-react';
+import type { ContentHistory as ContentHistoryType, ToneType } from '../types';
+import { TabWarningModal } from './TabWarningModal';
+
+interface GeneratedPostScheduleModalProps {
+  isOpen: boolean;
+  onClose: () => void;
+  onSchedule: (data: {
+    title: string;
+    caption: string;
+    hashtags: string[];
+    scheduledDate: string;
+    scheduledTime: string;
+    platforms: string[];
+    notes: string;
+  }) => void;
+  content: ContentHistoryType | null;
+}
+
+export function GeneratedPostScheduleModal({ isOpen, onClose, onSchedule, content }: GeneratedPostScheduleModalProps) {
+  const [selectedTone, setSelectedTone] = useState<ToneType>('casual');
+  const [title, setTitle] = useState('');
+  const [scheduledDate, setScheduledDate] = useState('');
+  const [scheduledTime, setScheduledTime] = useState('09:00');
+  const [platforms, setPlatforms] = useState<string[]>(['instagram']);
+  const [notes, setNotes] = useState('');
+  const [showWarning, setShowWarning] = useState(false);
+  const [pendingScheduleData, setPendingScheduleData] = useState<any>(null);
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    if (!content) return;
+
+    const caption = selectedTone === 'formal'
+      ? content.formal_caption
+      : selectedTone === 'casual'
+      ? content.casual_caption
+      : content.funny_caption;
+
+    const scheduleData = {
+      title,
+      caption,
+      hashtags: content.hashtags,
+      scheduledDate,
+      scheduledTime,
+      platforms,
+      notes
+    };
+    setPendingScheduleData(scheduleData);
+    setShowWarning(true);
+  };
+
+  const handleConfirmSchedule = () => {
+    if (pendingScheduleData) {
+      onSchedule(pendingScheduleData);
+      setShowWarning(false);
+      setPendingScheduleData(null);
+      onClose();
+      resetForm();
+    }
+  };
+
+  const handleCancelWarning = () => {
+    setShowWarning(false);
+    setPendingScheduleData(null);
+  };
+
+  const resetForm = () => {
+    setSelectedTone('casual');
+    setTitle('');
+    setScheduledDate('');
+    setScheduledTime('09:00');
+    setPlatforms(['instagram']);
+    setNotes('');
+  };
+
+  const togglePlatform = (platform: string) => {
+    setPlatforms(prev =>
+      prev.includes(platform)
+        ? prev.filter(p => p !== platform)
+        : [...prev, platform]
+    );
+  };
+
+  const platformOptions = [
+    { id: 'instagram', name: 'Instagram', icon: Instagram, color: 'from-purple-500 to-pink-500' },
+    { id: 'twitter', name: 'Twitter', icon: Twitter, color: 'from-blue-400 to-cyan-500' },
+    { id: 'linkedin', name: 'LinkedIn', icon: Linkedin, color: 'from-blue-600 to-blue-800' },
+    { id: 'facebook', name: 'Facebook', icon: Facebook, color: 'from-blue-500 to-indigo-600' }
+  ];
+
+  const toneOptions: Array<{ value: ToneType; label: string; color: string }> = [
+    { value: 'formal', label: 'Professional', color: 'from-blue-500 to-indigo-600' },
+    { value: 'casual', label: 'Casual', color: 'from-green-500 to-teal-600' },
+    { value: 'funny', label: 'Fun & Playful', color: 'from-orange-500 to-pink-600' }
+  ];
+
+  const getMinDate = () => {
+    const today = new Date();
+    return today.toISOString().split('T')[0];
+  };
+
+  const getSelectedCaption = () => {
+    if (!content) return '';
+    return selectedTone === 'formal'
+      ? content.formal_caption
+      : selectedTone === 'casual'
+      ? content.casual_caption
+      : content.funny_caption;
+  };
+
+  if (!isOpen || !content) return null;
+
+  return (
+    <>
+      <TabWarningModal
+        isOpen={showWarning}
+        onConfirm={handleConfirmSchedule}
+        onCancel={handleCancelWarning}
+      />
+      <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
+      <div className="bg-white rounded-2xl max-w-3xl w-full max-h-[90vh] overflow-y-auto">
+        <div className="sticky top-0 bg-white border-b px-6 py-4 flex items-center justify-between rounded-t-2xl">
+          <div className="flex items-center gap-3">
+            <div className="w-10 h-10 bg-gradient-to-br from-purple-500 to-pink-600 rounded-xl flex items-center justify-center">
+              <CalendarIcon className="w-5 h-5 text-white" />
+            </div>
+            <h2 className="text-2xl font-bold text-gray-800">Schedule Generated Post</h2>
+          </div>
+          <button
+            onClick={onClose}
+            className="p-2 hover:bg-gray-100 rounded-lg transition-colors"
+          >
+            <X className="w-5 h-5 text-gray-500" />
+          </button>
+        </div>
+
+        <form onSubmit={handleSubmit} className="p-6 space-y-6">
+          <div className="bg-purple-50 border border-purple-200 rounded-xl p-4">
+            <p className="text-sm text-gray-700 font-medium line-clamp-2">
+              {content.description}
+            </p>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-3">
+              Select Tone *
+            </label>
+            <div className="grid grid-cols-3 gap-3">
+              {toneOptions.map(tone => (
+                <button
+                  key={tone.value}
+                  type="button"
+                  onClick={() => setSelectedTone(tone.value)}
+                  className={`p-3 rounded-xl border-2 transition-all ${
+                    selectedTone === tone.value
+                      ? 'border-transparent ring-2 ring-offset-2 ring-purple-500 bg-purple-50'
+                      : 'border-gray-200 hover:border-gray-300'
+                  }`}
+                >
+                  <div className={`w-8 h-8 bg-gradient-to-br ${tone.color} rounded-lg flex items-center justify-center mx-auto mb-2`}>
+                    <Sparkles className="w-4 h-4 text-white" />
+                  </div>
+                  <span className="text-sm font-medium text-gray-700">
+                    {tone.label}
+                  </span>
+                </button>
+              ))}
+            </div>
+          </div>
+
+          <div className="bg-gray-50 border border-gray-200 rounded-xl p-4">
+            <h4 className="text-xs font-semibold text-gray-600 uppercase mb-2">
+              Selected Caption Preview
+            </h4>
+            <p className="text-sm text-gray-700 whitespace-pre-wrap max-h-32 overflow-y-auto">
+              {getSelectedCaption()}
+            </p>
+          </div>
+
+          <div>
+            <label htmlFor="title" className="block text-sm font-medium text-gray-700 mb-2">
+              Post Title *
+            </label>
+            <input
+              id="title"
+              type="text"
+              required
+              value={title}
+              onChange={(e) => setTitle(e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              placeholder="e.g., Summer Sale Launch Post"
+            />
+          </div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+            <div>
+              <label htmlFor="date" className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                <CalendarIcon className="w-4 h-4" />
+                Date *
+              </label>
+              <input
+                id="date"
+                type="date"
+                required
+                min={getMinDate()}
+                value={scheduledDate}
+                onChange={(e) => setScheduledDate(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
+            </div>
+
+            <div>
+              <label htmlFor="time" className="block text-sm font-medium text-gray-700 mb-2 flex items-center gap-2">
+                <Clock className="w-4 h-4" />
+                Time *
+              </label>
+              <input
+                id="time"
+                type="time"
+                required
+                value={scheduledTime}
+                onChange={(e) => setScheduledTime(e.target.value)}
+                className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent"
+              />
+            </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-700 mb-3">
+              Target Platforms *
+            </label>
+            <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
+              {platformOptions.map(platform => {
+                const Icon = platform.icon;
+                const isSelected = platforms.includes(platform.id);
+                return (
+                  <button
+                    key={platform.id}
+                    type="button"
+                    onClick={() => togglePlatform(platform.id)}
+                    className={`p-4 rounded-xl border-2 transition-all ${
+                      isSelected
+                        ? 'border-transparent ring-2 ring-offset-2 ring-purple-500 bg-purple-50'
+                        : 'border-gray-200 hover:border-gray-300'
+                    }`}
+                  >
+                    <div className={`w-10 h-10 bg-gradient-to-br ${platform.color} rounded-lg flex items-center justify-center mx-auto mb-2`}>
+                      <Icon className="w-5 h-5 text-white" />
+                    </div>
+                    <span className="text-sm font-medium text-gray-700">
+                      {platform.name}
+                    </span>
+                  </button>
+                );
+              })}
+            </div>
+          </div>
+
+          <div>
+            <label htmlFor="notes" className="block text-sm font-medium text-gray-700 mb-2">
+              Notes (Optional)
+            </label>
+            <textarea
+              id="notes"
+              rows={3}
+              value={notes}
+              onChange={(e) => setNotes(e.target.value)}
+              className="w-full px-4 py-3 border border-gray-300 rounded-xl focus:ring-2 focus:ring-purple-500 focus:border-transparent resize-none"
+              placeholder="Add any notes or reminders for this post..."
+            />
+          </div>
+
+          <div className="flex gap-3 pt-4 border-t">
+            <button
+              type="button"
+              onClick={onClose}
+              className="flex-1 px-6 py-3 border border-gray-300 rounded-xl font-medium text-gray-700 hover:bg-gray-50 transition-colors"
+            >
+              Cancel
+            </button>
+            <button
+              type="submit"
+              disabled={platforms.length === 0}
+              className="flex-1 px-6 py-3 bg-gradient-to-r from-purple-500 to-pink-600 text-white rounded-xl font-semibold hover:from-purple-600 hover:to-pink-700 disabled:from-gray-300 disabled:to-gray-400 disabled:cursor-not-allowed transition-all flex items-center justify-center gap-2"
+            >
+              <Save className="w-4 h-4" />
+              Schedule Post
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+    </>
+  );
+}

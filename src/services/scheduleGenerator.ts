@@ -5,6 +5,64 @@ export interface RecurringSchedule {
   time: string;
 }
 
+export interface WeeklyScheduleSlot {
+  date: Date;
+  day: string;
+  time: string;
+}
+
+const BEST_POSTING_SCHEDULE = [
+  { day: 'friday', time: '18:00' },
+  { day: 'wednesday', time: '12:00' },
+  { day: 'tuesday', time: '10:00' },
+  { day: 'thursday', time: '15:00' },
+  { day: 'saturday', time: '11:00' },
+  { day: 'monday', time: '09:00' },
+  { day: 'sunday', time: '19:00' }
+];
+
+export function generateWeeklySchedule(
+  startDate: string,
+  numberOfPosts: number
+): WeeklyScheduleSlot[] {
+  const slots: WeeklyScheduleSlot[] = [];
+  const daysMap: Record<string, number> = {
+    sunday: 0,
+    monday: 1,
+    tuesday: 2,
+    wednesday: 3,
+    thursday: 4,
+    friday: 5,
+    saturday: 6
+  };
+
+  const selectedSchedule = BEST_POSTING_SCHEDULE.slice(0, numberOfPosts);
+  const [year, month, day] = startDate.split('-').map(Number);
+  const startDateObj = new Date(year, month - 1, day);
+
+  for (const schedule of selectedSchedule) {
+    const targetDayOfWeek = daysMap[schedule.day];
+    const currentDay = startDateObj.getDay();
+    let daysUntilTarget = targetDayOfWeek - currentDay;
+
+    if (daysUntilTarget < 0) {
+      daysUntilTarget += 7;
+    }
+
+    const postDate = new Date(year, month - 1, day + daysUntilTarget);
+
+    slots.push({
+      date: postDate,
+      day: schedule.day,
+      time: schedule.time
+    });
+  }
+
+  slots.sort((a, b) => a.date.getTime() - b.date.getTime());
+
+  return slots;
+}
+
 export function generateRecurringSchedule(
   startDate: string,
   frequency: 'weekly' | 'biweekly' | 'monthly',
