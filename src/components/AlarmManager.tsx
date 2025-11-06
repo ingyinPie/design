@@ -148,8 +148,8 @@ export function AlarmManager({ alarms, onAddAlarm, onDeleteAlarm, onDismissAlarm
     <div className="bg-[#EFF3F4] rounded-2xl shadow-md p-6">
       <div className="flex items-center justify-between mb-6">
         <div className="flex items-center gap-3">
-          <div className="w-12 h-12 rounded-xl flex items-center justify-center border-2 border-[#E1F196]">
-            <Bell className="w-6 h-6 text-[#E1F196]" />
+          <div className="w-12 h-12 rounded-xl flex items-center justify-center border-2 border-[#8FA6FF]">
+            <Bell className="w-6 h-6 text-[#8FA6FF]" />
           </div>
           <div>
             <h2 className="text-2xl font-bold text-[#3C3C3C]">Alarms</h2>
@@ -160,7 +160,7 @@ export function AlarmManager({ alarms, onAddAlarm, onDeleteAlarm, onDismissAlarm
         </div>
         <button
           onClick={onAddAlarm}
-          className="px-6 py-3 bg-[#5ABA8A] text-white rounded-xl font-semibold hover:bg-[#4AA87A] transition-all flex items-center gap-2 shadow-md"
+          className="px-6 py-3 bg-[#8FA6FF] text-white rounded-xl font-semibold hover:bg-[#7A95FF] transition-all flex items-center gap-2 shadow-md"
         >
           <Plus className="w-5 h-5" />
           New Alarm
