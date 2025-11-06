@@ -31,8 +31,8 @@ export function PostOutline({ outline }: PostOutlineProps) {
         <div className="space-y-3">
           <div className="card-float p-4 bg-gradient-to-br from-blue-50 to-cyan-50">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 border-2 rounded-lg flex items-center justify-center" style={{ borderColor: '#5ABA8A', background: 'linear-gradient(135deg, #E1F196, #5ABA8A)' }}>
-                <Zap className="w-4 h-4" style={{ color: '#5ABA8A', fill: 'none' }} />
+              <div className="w-8 h-8 border-2 rounded-lg flex items-center justify-center bg-transparent" style={{ borderColor: '#5ABA8A' }}>
+                <Zap className="w-4 h-4" style={{ color: '#5ABA8A', fill: 'none', strokeWidth: 2 }} />
               </div>
               <h3 className="font-semibold text-gray-800 text-base">💡 Opening Hook</h3>
             </div>
@@ -41,8 +41,8 @@ export function PostOutline({ outline }: PostOutlineProps) {
 
           <div className="card-float p-4 bg-gradient-to-br from-purple-50 to-pink-50">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 border-2 rounded-lg flex items-center justify-center" style={{ borderColor: '#5ABA8A', background: 'linear-gradient(135deg, #E1F196, #5ABA8A)' }}>
-                <Target className="w-4 h-4" style={{ color: '#5ABA8A', fill: 'none' }} />
+              <div className="w-8 h-8 border-2 rounded-lg flex items-center justify-center bg-transparent" style={{ borderColor: '#5ABA8A' }}>
+                <Target className="w-4 h-4" style={{ color: '#5ABA8A', fill: 'none', strokeWidth: 2 }} />
               </div>
               <h3 className="font-semibold text-gray-800 text-base">📝 Main Message</h3>
             </div>
@@ -51,8 +51,8 @@ export function PostOutline({ outline }: PostOutlineProps) {
 
           <div className="card-float p-4 bg-gradient-to-br from-orange-50 to-red-50">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 border-2 rounded-lg flex items-center justify-center" style={{ borderColor: '#5ABA8A', background: 'linear-gradient(135deg, #E1F196, #5ABA8A)' }}>
-                <Target className="w-4 h-4" style={{ color: '#5ABA8A', fill: 'none' }} />
+              <div className="w-8 h-8 border-2 rounded-lg flex items-center justify-center bg-transparent" style={{ borderColor: '#5ABA8A' }}>
+                <Target className="w-4 h-4" style={{ color: '#5ABA8A', fill: 'none', strokeWidth: 2 }} />
               </div>
               <h3 className="font-semibold text-gray-800 text-base">🎯 Call-to-Action</h3>
             </div>
@@ -61,8 +61,8 @@ export function PostOutline({ outline }: PostOutlineProps) {
 
           <div className="card-float p-4 bg-gradient-to-br from-green-50 to-teal-50">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 border-2 rounded-lg flex items-center justify-center" style={{ borderColor: '#5ABA8A', background: 'linear-gradient(135deg, #E1F196, #5ABA8A)' }}>
-                <Clock className="w-4 h-4" style={{ color: '#5ABA8A', fill: 'none' }} />
+              <div className="w-8 h-8 border-2 rounded-lg flex items-center justify-center bg-transparent" style={{ borderColor: '#5ABA8A' }}>
+                <Clock className="w-4 h-4" style={{ color: '#5ABA8A', fill: 'none', strokeWidth: 2 }} />
               </div>
               <h3 className="font-semibold text-gray-800 text-base">⏰ Best Time to Post</h3>
             </div>
@@ -85,10 +85,10 @@ export function PostOutline({ outline }: PostOutlineProps) {
                 onClick={() => toggleStep(index)}
               >
                 <div className="flex items-start gap-3">
-                  <div className={`w-7 h-7 rounded-full flex items-center justify-center text-sm font-bold flex-shrink-0 transition-all pointer-events-none ${
+                  <div className={`w-7 h-7 rounded-full border-2 flex items-center justify-center text-sm font-bold flex-shrink-0 transition-all pointer-events-none ${
                     completedSteps.includes(index)
-                      ? 'bg-green-500 text-white'
-                      : 'bg-gradient-to-br from-[#8FA6FF] to-[#7A95FF] text-white'
+                      ? 'bg-green-500 text-white border-green-500'
+                      : 'bg-transparent border-[#8FA6FF] text-[#8FA6FF]'
                   }`}>
                     {completedSteps.includes(index) && (
                       <Check className="w-4 h-4 check-bounce" />
