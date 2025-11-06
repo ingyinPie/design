@@ -31,8 +31,8 @@ export function PostOutline({ outline }: PostOutlineProps) {
         <div className="space-y-3">
           <div className="card-float p-4 bg-gradient-to-br from-blue-50 to-cyan-50">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center">
-                <Zap className="w-4 h-4 text-white" />
+              <div className="w-8 h-8 border-2 rounded-lg flex items-center justify-center" style={{ borderColor: '#5ABA8A', background: 'linear-gradient(135deg, #E1F196, #5ABA8A)' }}>
+                <Zap className="w-4 h-4" style={{ color: '#5ABA8A', fill: 'none' }} />
               </div>
               <h3 className="font-semibold text-gray-800 text-base">💡 Opening Hook</h3>
             </div>
@@ -41,8 +41,8 @@ export function PostOutline({ outline }: PostOutlineProps) {
 
           <div className="card-float p-4 bg-gradient-to-br from-purple-50 to-pink-50">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 bg-purple-500 rounded-lg flex items-center justify-center">
-                <Target className="w-4 h-4 text-white" />
+              <div className="w-8 h-8 border-2 rounded-lg flex items-center justify-center" style={{ borderColor: '#5ABA8A', background: 'linear-gradient(135deg, #E1F196, #5ABA8A)' }}>
+                <Target className="w-4 h-4" style={{ color: '#5ABA8A', fill: 'none' }} />
               </div>
               <h3 className="font-semibold text-gray-800 text-base">📝 Main Message</h3>
             </div>
@@ -51,8 +51,8 @@ export function PostOutline({ outline }: PostOutlineProps) {
 
           <div className="card-float p-4 bg-gradient-to-br from-orange-50 to-red-50">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 bg-orange-500 rounded-lg flex items-center justify-center">
-                <Target className="w-4 h-4 text-white" />
+              <div className="w-8 h-8 border-2 rounded-lg flex items-center justify-center" style={{ borderColor: '#5ABA8A', background: 'linear-gradient(135deg, #E1F196, #5ABA8A)' }}>
+                <Target className="w-4 h-4" style={{ color: '#5ABA8A', fill: 'none' }} />
               </div>
               <h3 className="font-semibold text-gray-800 text-base">🎯 Call-to-Action</h3>
             </div>
@@ -61,8 +61,8 @@ export function PostOutline({ outline }: PostOutlineProps) {
 
           <div className="card-float p-4 bg-gradient-to-br from-green-50 to-teal-50">
             <div className="flex items-center gap-2 mb-2">
-              <div className="w-8 h-8 bg-green-500 rounded-lg flex items-center justify-center">
-                <Clock className="w-4 h-4 text-white" />
+              <div className="w-8 h-8 border-2 rounded-lg flex items-center justify-center" style={{ borderColor: '#5ABA8A', background: 'linear-gradient(135deg, #E1F196, #5ABA8A)' }}>
+                <Clock className="w-4 h-4" style={{ color: '#5ABA8A', fill: 'none' }} />
               </div>
               <h3 className="font-semibold text-gray-800 text-base">⏰ Best Time to Post</h3>
             </div>
@@ -90,10 +90,8 @@ export function PostOutline({ outline }: PostOutlineProps) {
                       ? 'bg-green-500 text-white'
                       : 'bg-gradient-to-br from-[#8FA6FF] to-[#7A95FF] text-white'
                   }`}>
-                    {completedSteps.includes(index) ? (
+                    {completedSteps.includes(index) && (
                       <Check className="w-4 h-4 check-bounce" />
-                    ) : (
-                      index + 1
                     )}
                   </div>
                   <span className="text-sm text-gray-700 leading-relaxed flex-1">{item}</span>

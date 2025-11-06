@@ -71,7 +71,7 @@ Generated at: ${new Date().toLocaleString()}
       <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
         <button
           onClick={handleCopyAll}
-          className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white rounded-xl font-semibold transition-all shadow-md hover:shadow-lg text-sm transform hover:scale-[0.98]"
+          className="btn-schedule flex items-center justify-center gap-2"
         >
           {copied ? (
             <>
@@ -88,7 +88,7 @@ Generated at: ${new Date().toLocaleString()}
 
         <button
           onClick={handleDownload}
-          className="flex items-center justify-center gap-2 px-4 py-3 bg-gradient-to-r from-green-500 to-green-600 hover:from-green-600 hover:to-green-700 text-white rounded-xl font-semibold transition-all shadow-md hover:shadow-lg text-sm transform hover:scale-[0.98]"
+          className="btn-schedule flex items-center justify-center gap-2"
         >
           <Download className="w-4 h-4" />
           Download as Text

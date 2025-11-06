@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Sparkles, CalendarDays } from 'lucide-react';
+import { Sparkles, CalendarDays, Video } from 'lucide-react';
 import { InputSection } from './components/InputSection';
 import { CaptionSelector } from './components/CaptionSelector';
 import { HashtagDisplay } from './components/HashtagDisplay';
@@ -479,7 +479,7 @@ function App() {
       <div className="container mx-auto px-4 py-8 max-w-7xl">
         <header className="mb-8 animate-fade-in">
           <div className="bg-white border-b border-[#EFF3F4] pb-1 mb-6">
-            <div className="flex items-center justify-start gap-1">
+            <div className="flex flex-col items-start gap-1">
               <button
                 onClick={() => setShowScheduleView(false)}
                 className={`btn-secondary flex items-center gap-2 ${
@@ -501,6 +501,17 @@ function App() {
               >
                 <CalendarDays className="w-4 h-4" />
                 <span>Calendar & Alarms</span>
+              </button>
+              <button
+                onClick={() => setShowVideoTips(!showVideoTips)}
+                className={`btn-secondary flex items-center gap-2 ${
+                  showVideoTips
+                    ? '!bg-[#8FA6FF] !text-white rounded-lg'
+                    : ''
+                }`}
+              >
+                <Video className="w-4 h-4" />
+                <span>Video Tips</span>
               </button>
             </div>
           </div>
@@ -525,19 +536,19 @@ function App() {
               }}
             />
             {currentStep === 1 && (
-              <div className="grid grid-cols-1 lg:grid-cols-12 gap-6">
-                <div className="lg:col-span-8">
-                  <ContentHistory
-                    history={contentHistory}
-                    onLoadContent={handleLoadContent}
-                    onDeleteContent={handleDeleteContent}
-                  />
-                  <InputSection onGenerate={handleGenerate} isGenerating={isGenerating} />
-                </div>
-                <div className="lg:col-span-4">
-                  <VideoOptimizationTips />
-                </div>
-              </div>
+              <>
+                {showVideoTips && (
+                  <div className="mb-6">
+                    <VideoOptimizationTips />
+                  </div>
+                )}
+                <ContentHistory
+                  history={contentHistory}
+                  onLoadContent={handleLoadContent}
+                  onDeleteContent={handleDeleteContent}
+                />
+                <InputSection onGenerate={handleGenerate} isGenerating={isGenerating} />
+              </>
             )}
 
             {currentStep === 2 && (
